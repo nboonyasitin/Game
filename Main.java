@@ -16,39 +16,49 @@ public class Main {
 		// TODO Auto-generated method stub
 		Scanner s=new Scanner(System.in);
 		System.out.println("Please select the number of ships");
+		// number of ships must range from 1-5.
+
+		//allow user to choose placement of the ships.
 		int num=s.nextInt();
 		init(num);
-		int op=1;int x,y,re,f;
+		int op=1;
+		int x,y,re,f;
 		int over=gameover();
 		while(over==0)
 		{
 			if(op==1)
 			{
-				System.out.println("input");
+				// System.out.println("input");
+
+				//screen output for x.
+				System.out.println("Coordinate x:");
 				x=s.nextInt();
+
+				//screen output for y.
+				System.out.println("Coordinate y:");
 				y=s.nextInt();
 				f=map[x][y];
 				re=judge(x,y,-1);
-				
 			}
 			else
 			{
+				//Player 2 should not be the computer.
 				x=(int)(Math.random()*9)+1;
 				y=(int)(Math.random()*9)+1;
-				System.out.println("computer:    x="+x+" y="+y);
+				System.out.println("Computer:    x = "+x+" y = "+y);
 				f=map[x][y];
 				re=judge(x,y,1);
 			}
 			if(re==0)System.out.println("Miss");
-			else if(re==1) System.out.println("Hit the target :"+Math.abs(f));
+			else if(re==1) System.out.println("Hit the target : "+Math.abs(f));
 			else System.out.println("Ship "+Math.abs(f)+" has been destroyed");
 			
 			
 			op=1-op;
 			over=gameover();
 		}
-		if(over==1)System.out.println("GameOver You Win");
-		if(over==-1)System.out.println("GameOver You Lose");
+		if(over==1)System.out.println("Game Over, You Win");
+		if(over==-1)System.out.println("Game Over, You Lose");
 	}
 	static int gameover()
 	{
